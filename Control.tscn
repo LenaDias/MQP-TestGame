@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://DiagBox.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Portrait.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Bounce"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 521, 278 ), Vector2( 521, 300 ), Vector2( 521, 278 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 64.0
+margin_top = 433.0
+margin_right = 976.0
+margin_bottom = 569.0
+script = ExtResource( 1 )
+dialogPath = "C:\\Users\\lenad\\Desktop\\MQP\\TestGame\\Dialog0.json"
+
+[node name="Text" type="RichTextLabel" parent="ColorRect"]
+margin_left = 15.0
+margin_top = 61.0
+margin_right = 898.0
+margin_bottom = 124.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Dialogue "
+
+[node name="Name" type="RichTextLabel" parent="ColorRect"]
+margin_left = 11.0
+margin_top = 7.0
+margin_right = 270.0
+margin_bottom = 38.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Name here
+
+"
+
+[node name="Indicator" type="Polygon2D" parent="ColorRect"]
+position = Vector2( 457, -155 )
+scale = Vector2( 0.468085, 0.468085 )
+color = Color( 0.439216, 0.105882, 0.105882, 1 )
+polygon = PoolVector2Array( 849, 498, 909, 498, 882, 545 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/Indicator"]
+anims/Bounce = SubResource( 1 )
+
+[node name="Portrait" type="Sprite" parent="ColorRect"]
+position = Vector2( 103, -112 )
+scale = Vector2( 3.21875, 3.21875 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+one_shot = true
